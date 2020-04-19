@@ -1,3 +1,7 @@
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'screens/balance.dart';
+import 'screens/resumen.dart';
+import 'screens/ventas.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(AutoventaApp());
@@ -7,58 +11,48 @@ class AutoventaApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate
+      ],
+      supportedLocales: [const Locale('es')],
       title: 'AutoVenta',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      routes: <String, WidgetBuilder>{
+        '/ventas': (context)=>Ventas(),
+        '/balance': (context)=>Balance(),
+        '/resumen': (context)=>Resumen()
+      },
       home: MyHomePage(title: 'AutoVenta'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
+    // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text('INICIO'),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), 
+          child: Column(
+        children: <Widget>[
+          RaisedButton(
+              onPressed: () => Navigator.pushNamed(context, '/ventas'),
+              child: Text('VENTAS')),
+          RaisedButton(
+              onPressed: () => Navigator.pushNamed(context, '/balance'),
+              child: Text('BALANCE'))
+        ],
+      )),
     );
   }
 }
