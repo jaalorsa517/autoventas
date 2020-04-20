@@ -21,9 +21,9 @@ class AutoventaApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: <String, WidgetBuilder>{
-        '/ventas': (context)=>Ventas(),
-        '/balance': (context)=>Balance(),
-        '/resumen': (context)=>Resumen()
+        '/ventas': (context) => Ventas(),
+        '/balance': (context) => Balance(),
+        '/resumen': (context) => Resumen()
       },
       home: MyHomePage(title: 'AutoVenta'),
     );
@@ -37,18 +37,20 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text('INICIO'),
+        title: Center(child: Text('INICIO')),
       ),
       body: Center(
           child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           RaisedButton(
+              color: Colors.blueAccent,
               onPressed: () => Navigator.pushNamed(context, '/ventas'),
               child: Text('VENTAS')),
           RaisedButton(
+              color: Colors.blueAccent,
               onPressed: () => Navigator.pushNamed(context, '/balance'),
               child: Text('BALANCE'))
         ],
