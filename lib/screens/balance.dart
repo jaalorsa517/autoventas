@@ -1,4 +1,7 @@
+import 'package:autoventas/providers/provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:autoventas/logica/driver.dart';
 
 class Balance extends StatefulWidget {
   @override
@@ -26,6 +29,7 @@ class _Balance extends State<Balance> {
       11: 'Nov',
       12: 'Dic'
     };
+    var driver=Provider.of<MyProvider>(context);
     return Scaffold(
         appBar: AppBar(
           title: Row(
@@ -49,7 +53,7 @@ class _Balance extends State<Balance> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
                       Flexible(flex: 2, child: Text('TOTAL')),
-                      Flexible(flex: 2, child: Text('999999')),
+                      Flexible(flex: 2, child: Text(driver.total)),
                     ],
                   )),
             )

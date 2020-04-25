@@ -3,6 +3,8 @@ import 'screens/balance.dart';
 import 'screens/resumen.dart';
 import 'screens/ventas.dart';
 import 'package:flutter/material.dart';
+import 'providers/provider.dart';
+import 'package:provider/provider.dart';
 
 void main() => runApp(AutoventaApp());
 
@@ -10,23 +12,25 @@ class AutoventaApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate
-      ],
-      supportedLocales: [const Locale('es')],
-      title: 'AutoVenta',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      routes: <String, WidgetBuilder>{
-        '/ventas': (context) => Ventas(),
-        '/balance': (context) => Balance(),
-        '/resumen': (context) => Resumen()
-      },
-      home: MyHomePage(title: 'AutoVenta'),
-    );
+    return ChangeNotifierProvider<MyProvider>(
+        create: (context) => MyProvider(),
+        child: MaterialApp(
+          localizationsDelegates: [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate
+          ],
+          supportedLocales: [const Locale('es')],
+          title: 'AutoVenta',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          routes: <String, WidgetBuilder>{
+            '/ventas': (context) => Ventas(),
+            '/balance': (context) => Balance(),
+            '/resumen': (context) => Resumen()
+          },
+          home: MyHomePage(title: 'AutoVenta'),
+        ));
   }
 }
 

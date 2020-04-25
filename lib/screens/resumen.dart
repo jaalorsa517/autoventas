@@ -1,4 +1,7 @@
+import 'package:autoventas/providers/provider.dart';
 import 'package:flutter/material.dart';
+import 'package:autoventas/logica/driver.dart';
+import 'package:provider/provider.dart';
 
 class Resumen extends StatefulWidget {
   @override
@@ -26,6 +29,7 @@ class _Resumen extends State<Resumen> {
       11: 'Nov',
       12: 'Dic'
     };
+    var driver=Provider.of<MyProvider>(context);
     return Scaffold(
         appBar: AppBar(
           title: Row(
@@ -47,7 +51,7 @@ class _Resumen extends State<Resumen> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       Flexible(flex: 2, child: Text('TOTAL')),
-                      Flexible(flex: 2, child: Text('999999')),
+                      Flexible(flex: 2, child: Text(driver.total)),
                       Flexible(
                           flex: 1,
                           child: IconButton(
